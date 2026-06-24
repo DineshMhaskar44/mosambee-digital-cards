@@ -11,8 +11,9 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  serverExternalPackages: ["qrcode"],
   experimental: {
-    serverComponentsExternalPackages: ["qrcode"],
+    missingSuspenseWithCSRBailout: false,
   },
 };
 
