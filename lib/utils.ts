@@ -59,7 +59,7 @@ export function truncate(str: string, max = 50): string {
 
 /** Build the public card URL for an employee */
 export function cardUrl(employeeId: string): string {
-  const base = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+  const base = process.env.NEXT_PUBLIC_APP_URL || "https://mosambee-digital-cards-nine.vercel.app";
   return `${base}/card/${employeeId}`;
 }
 
