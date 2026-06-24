@@ -1,10 +1,8 @@
 "use client";
 
-export const dynamic = "force-dynamic";
-
-import { useEffect, useState, useCallback, Suspense } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import {
   Plus, Search, Filter, QrCode, ExternalLink,
   Edit, Trash2, Download, RefreshCw, ChevronLeft, ChevronRight,
@@ -17,13 +15,12 @@ import toast from "react-hot-toast";
 const PAGE_SIZE = 15;
 
 function EmployeesContent() {
-  const router       = useRouter();
-  const searchParams = useSearchParams();
+  const router = useRouter();
 
   const [data,    setData]    = useState<PaginatedResponse<Employee> | null>(null);
   const [loading, setLoading] = useState(true);
-  const [search,  setSearch]  = useState(searchParams.get("search") ?? "");
-  const [status,  setStatus]  = useState(searchParams.get("status") ?? "");
+  const [search,  setSearch]  = useState("");
+  const [status,  setStatus]  = useState("");
   const [page,    setPage]    = useState(1);
   const [deleting, setDeleting] = useState<string | null>(null);
   const [regening,  setRegening]  = useState<string | null>(null);
