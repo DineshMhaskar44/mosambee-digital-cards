@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
@@ -14,7 +14,7 @@ import toast from "react-hot-toast";
 
 const PAGE_SIZE = 15;
 
-export default function EmployeesPage() {
+function EmployeesContent() {
   const router       = useRouter();
   const searchParams = useSearchParams();
 
@@ -250,5 +250,13 @@ export default function EmployeesPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function EmployeesPage() {
+  return (
+    <Suspense fallback={<div className="p-8 text-center text-gray-400">Loading…</div>}>
+      <EmployeesContent />
+    </Suspense>
   );
 }
