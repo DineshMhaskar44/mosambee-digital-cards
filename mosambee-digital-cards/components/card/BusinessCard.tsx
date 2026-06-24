@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useSearchParams } from "react";
+import { useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import {
   Phone, Mail, Globe, MapPin, Linkedin,
