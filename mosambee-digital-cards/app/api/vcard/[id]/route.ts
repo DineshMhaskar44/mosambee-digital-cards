@@ -32,15 +32,13 @@ export async function GET(request: NextRequest, { params }: Params) {
   // Track vCard download asynchronously (don't await)
   const adminSupabase = await createAdminClient();
   const ua = request.headers.get("user-agent") ?? "";
-  adminSupabase
+  void adminSupabase
     .from("vcard_downloads")
     .insert({
       employee_id: employee.id,
       ip_address:  request.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? null,
       user_agent:  ua,
-    })
-    .then(() => {}) // fire-and-forget
-    .catch(console.error);
+    });
 
   return new NextResponse(vcf, {
     status: 200,

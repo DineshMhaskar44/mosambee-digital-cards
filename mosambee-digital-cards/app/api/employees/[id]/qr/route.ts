@@ -25,7 +25,7 @@ export async function GET(_req: NextRequest, { params }: Params) {
 
   const buffer = await generateQRCodeBuffer(employee.employee_id, { size: 512 });
 
-  return new NextResponse(buffer, {
+  return new NextResponse(new Uint8Array(buffer), {
     status: 200,
     headers: {
       "Content-Type": "image/png",
