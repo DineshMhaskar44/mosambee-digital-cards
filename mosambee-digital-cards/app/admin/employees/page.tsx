@@ -8,7 +8,6 @@ import {
 } from "lucide-react";
 import { formatNumber } from "@/lib/utils";
 import type { Employee, PaginatedResponse } from "@/types";
-import Image from "next/image";
 import toast from "react-hot-toast";
 
 const PAGE_SIZE = 15;
@@ -138,7 +137,8 @@ function EmployeesContent() {
                       <div className="flex items-center gap-3">
                         <div className="w-9 h-9 rounded-full bg-brand-100 dark:bg-brand-900 overflow-hidden flex-shrink-0">
                           {emp.profile_photo_url ? (
-                            <Image src={emp.profile_photo_url} alt={emp.full_name} width={36} height={36} className="object-cover w-full h-full" />
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img src={emp.profile_photo_url} alt={emp.full_name} className="object-cover w-full h-full" />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center text-brand-600 font-bold text-sm">
                               {emp.full_name[0]}
