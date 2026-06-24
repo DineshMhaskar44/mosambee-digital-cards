@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -51,5 +52,9 @@ export default async function CardPage({ params }: Props) {
 
   if (error || !employee) notFound();
 
-  return <BusinessCard employee={employee as Employee} />;
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-slate-900" />}>
+      <BusinessCard employee={employee as Employee} />
+    </Suspense>
+  );
 }

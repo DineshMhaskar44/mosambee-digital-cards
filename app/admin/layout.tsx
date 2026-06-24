@@ -1,27 +1,16 @@
-"use client";
+import { Suspense } from "react";
+import { AdminShell } from "../../components/admin/AdminShell";
 
-import { useState } from "react";
-import { Sidebar } from "@/components/admin/Sidebar";
-import { Header } from "@/components/admin/Header";
+export const dynamic = "force-dynamic";
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
+export default function AdminLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <div className="min-h-screen flex bg-gray-50 dark:bg-slate-900">
-      {/* Sidebar — fixed left */}
-      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-
-      {/* Main content — offset for desktop sidebar */}
-      <div className="flex-1 flex flex-col lg:ml-64">
-        <Header
-          onMenuClick={() => setSidebarOpen(true)}
-          title="Mosambee Admin"
-        />
-        <main className="flex-1 p-6 overflow-auto animate-fade-in">
-          {children}
-        </main>
-      </div>
-    </div>
+    <Suspense fallback={<div className="min-h-screen bg-slate-900" />}>
+      <AdminShell>{children}</AdminShell>
+    </Suspense>
   );
 }
