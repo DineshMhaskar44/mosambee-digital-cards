@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import {
   Plus, Search, Filter, QrCode, ExternalLink,
   Edit, Trash2, Download, RefreshCw, ChevronLeft, ChevronRight,
@@ -15,8 +14,6 @@ import toast from "react-hot-toast";
 const PAGE_SIZE = 15;
 
 function EmployeesContent() {
-  const router = useRouter();
-
   const [data,    setData]    = useState<PaginatedResponse<Employee> | null>(null);
   const [loading, setLoading] = useState(true);
   const [search,  setSearch]  = useState("");
