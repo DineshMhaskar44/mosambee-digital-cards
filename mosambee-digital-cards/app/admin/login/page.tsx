@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { QrCode, Eye, EyeOff, Loader2 } from "lucide-react";
@@ -11,9 +11,8 @@ import toast from "react-hot-toast";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export default function LoginPage() {
-  const router       = useRouter();
-  const searchParams = useSearchParams();
-  const supabase     = createClient();
+  const router   = useRouter();
+  const supabase = createClient();
   const [showPwd, setShowPwd] = useState(false);
 
   const {
@@ -47,8 +46,7 @@ export default function LoginPage() {
     }
 
     toast.success("Welcome back!");
-    const redirect = searchParams.get("redirect") ?? "/admin/dashboard";
-    router.push(redirect);
+    router.push("/admin/dashboard");
     router.refresh();
   }
 
